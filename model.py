@@ -24,12 +24,12 @@ def _add_lstm_layer(
     return layer
 
 
-def inverse_CQT(stft_shape, cqt_shape, hidden_size=256, n_layer=1):
+def inverse_CQT(stft_shape, cqt_shape, hidden_size=256, n_layer=2):
 
     lstm_hidden_size = hidden_size // 2
 
-    input_stft = L.Input(shape=stft_shape)
-    input_cqt = L.Input(shape=cqt_shape)
+    input_stft = L.Input(shape=stft_shape, name="STFT_INPUT")
+    input_cqt = L.Input(shape=cqt_shape, name="CQT_INPUT")
     
     x1 = input_stft
     x1 = L.Dense(hidden_size)(x1)
